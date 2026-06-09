@@ -26,4 +26,4 @@ That's it — no framework, no build.
 - The App Store / sign-in / list links are placeholders (`#`); point them where you need.
 - Time-bucket chips (1/2/5/10 min) swap the featured quote — edit the `picks` array near the bottom of `index.html`.
 - Theme is Pinot dark. Colors live in the `:root` CSS variables at the top, so it's easy to retheme.
-- Fonts (Fraunces + Inter) load from Google Fonts.
+- Fonts load from Google Fonts: **Fraunces 600** (headings/titles) and **Newsreader 400** (body/reading text).
