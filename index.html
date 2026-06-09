@@ -269,9 +269,27 @@
     .pillar{border-right:none;border-bottom:1px solid var(--line)}
     .pillar:last-child{border-bottom:none}
     .nav-links{display:none}
+
+    /* center intro text on mobile where it reads well */
+    .hero{text-align:center}
+    .hero .lead{margin-left:auto;margin-right:auto}
+    .hero-cta{justify-content:center}
+    .section-head{text-align:center;margin-left:auto;margin-right:auto}
+    #minutes .minutes-grid>div:first-child,
+    #reader .split>div:first-child,
+    #reflect .split>div:last-child{text-align:center}
+    #minutes .minutes-grid>div:first-child p,
+    #reader .split>div:first-child p,
+    #reflect .split>div:last-child p{margin-left:auto;margin-right:auto}
+    .chips{justify-content:center}
+    #reader .split>div:first-child .btn,
+    #reflect .split>div:last-child .btn{margin-left:auto;margin-right:auto}
+    /* keep the atmosphere control's internal layout left/!centered */
+    .atmos{text-align:left}
   }
   @media(max-width:560px){
-    .moods{grid-template-columns:1fr}
+    .moods{grid-template-columns:repeat(2,1fr);gap:12px}
+    .mood{padding:18px;min-height:128px}
     .nav-cta .btn-ghost{display:none}
     .hero h1{font-size:2.5rem}
     .quote-card{padding:28px}
