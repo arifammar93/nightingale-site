@@ -68,8 +68,14 @@
     transform:scaleX(0);transform-origin:0 50%}
 
   /* ---------- NAV ---------- */
-  header{position:fixed;top:0;left:0;right:0;z-index:80;transition:background .4s var(--ease),border-color .4s var(--ease)}
-  header.scrolled{background:rgba(21,13,16,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+  header{position:fixed;top:0;left:0;right:0;z-index:80}
+  /* bg + blur + border live on an overlay that fades as ONE piece —
+     border/backdrop-filter can't transition from nothing (= edge flash) */
+  header::before{content:"";position:absolute;inset:0;
+    background:rgba(21,13,16,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);opacity:0;transition:opacity .45s var(--ease)}
+  header.scrolled::before{opacity:1}
+  header .wrap{position:relative;z-index:1}
   nav{display:flex;align-items:center;justify-content:space-between;height:84px}
   .brand{display:flex;align-items:center;gap:4px;font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500}
   .brand img{width:64px;height:64px;object-fit:contain}
@@ -96,7 +102,8 @@
 
   /* sticky phone stage */
   .stage-col{position:relative}
-  .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+  .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;
+    padding-top:84px;box-sizing:border-box} /* center within the space BELOW the nav */
   #embers{position:absolute;inset:0;z-index:1;pointer-events:none}
   .stage-glow{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
   .stage-glow .g{position:absolute;width:min(46vw,640px);aspect-ratio:1;border-radius:50%;
@@ -113,7 +120,9 @@
   /* scenes mode: phone is laid out at its LARGEST (spotlight) size and scaled
      down by default — the raster backing store stays high-res, so the screen
      is sharp at every scale (upscaling a cached layer is what causes blur) */
-  .stage.scenes .phone{width:clamp(287px,26.2vw,351px)}
+  /* height-capped: at spotlight (scale 1.0) the phone must clear the nav and
+     bottom edge even on short MacBook viewports */
+  .stage.scenes .phone{width:min(clamp(287px,26.2vw,351px),calc((100vh - 128px)/2.2))}
   .phone{width:clamp(252px,23vw,308px);border-radius:46px;padding:10px;
     background:linear-gradient(160deg,#3a2a2b,#1a1012);
     box-shadow:0 60px 110px -34px rgba(0,0,0,.8),0 0 0 1px rgba(239,228,223,.07),inset 0 0 0 1px rgba(0,0,0,.5);
