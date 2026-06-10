@@ -249,8 +249,8 @@
   .past{margin-top:16px;font-size:.88rem;color:var(--muted);max-width:44ch}
   .past em{color:var(--cream-2)}
 
-  /* inline phone for mobile */
-  .m-phone{display:none}
+  /* mobile-only elements (hero peek + swipe gallery) */
+  .m-peek,.m-gallery{display:none}
 
   /* ---------- CTA ---------- */
   .cta-sec{padding-block:10vh 12vh}
@@ -282,20 +282,41 @@
   /* ---------- RESPONSIVE ---------- */
   @media(max-width:920px){
     header nav{margin-inline:0} /* keep the pill inset on small screens */
-    .dots{display:none}
     .story{display:block}
     .stage-col{display:none}
     .chapter,.chapter#hero,.chapter#reflect{height:auto}
-    .ch-pin{position:static;height:auto;padding-block:11vh}
-    .chapter{text-align:center}
-    .chapter p.lead,.mini-quote,.past{margin-left:auto;margin-right:auto}
-    .hero-cta,.chips{justify-content:center}
-    .atmos,.reflect-box{margin-left:auto;margin-right:auto;text-align:left}
+    .ch-pin{position:static;height:auto;padding-block:10vh}
+    #hero .ch-pin{padding-top:15vh;padding-bottom:0}
+    .chapter p.lead{max-width:none}
+    .hero-cta .btn{width:100%;justify-content:center}
     .pathrow{text-align:left}
-    .m-phone{display:flex;justify-content:center;margin-top:48px}
-    .m-phone .phone{width:236px;transform:rotate(-2deg)}
-    .marquee{margin-left:calc(-1*clamp(22px,4.5vw,56px));margin-right:calc(-1*clamp(22px,4.5vw,56px))}
+    .marquee{margin-inline:calc(-1*clamp(22px,4.5vw,56px))}
     html.boot #hero .ch-tx>*{opacity:1} /* no cinematic intro on mobile */
+
+    /* hero phone peeks half into frame from the fold */
+    .m-peek{display:block;position:relative;height:46vh;margin-top:42px;overflow:hidden}
+    .m-peek::before{content:"";position:absolute;left:50%;top:10%;transform:translateX(-50%);
+      width:130vw;aspect-ratio:1;border-radius:50%;
+      background:radial-gradient(circle,rgba(197,138,102,.24),transparent 62%)}
+    .m-peek .phone{position:absolute;left:50%;top:0;width:min(78vw,330px);
+      transform:translateX(-50%) rotate(-1.6deg)}
+
+    /* swipeable screens gallery */
+    .m-gallery{display:block;padding-block:9vh 5vh}
+    .mg-head{padding:0 clamp(22px,4.5vw,56px);margin-bottom:24px}
+    .mg-head h2{font-size:1.9rem;margin-top:10px}
+    .mg-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+      padding:8px clamp(22px,4.5vw,56px) 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .mg-track::-webkit-scrollbar{display:none}
+    .mg-item{flex:0 0 64vw;max-width:280px;scroll-snap-align:center;margin:0}
+    .mg-phone{border-radius:38px;padding:8px;background:linear-gradient(160deg,#3a2a2b,#1a1012);
+      box-shadow:0 30px 60px -24px rgba(0,0,0,.75),0 0 0 1px rgba(239,228,223,.06)}
+    .mg-phone img{display:block;width:100%;border-radius:31px;aspect-ratio:1290/2796;object-fit:cover}
+    .mg-item figcaption{text-align:center;margin-top:12px;font-size:.88rem;color:var(--muted)}
+    .mg-dots{display:flex;justify-content:center;gap:8px;margin-top:8px}
+    .mg-dots i{width:6px;height:6px;border-radius:50%;background:rgba(239,228,223,.2);
+      transition:background .3s,transform .3s var(--ease)}
+    .mg-dots i.on{background:var(--terra);transform:scale(1.3)}
   }
   @media(max-width:560px){
     header{top:12px}
@@ -359,8 +380,23 @@
               <a href="#download" class="btn btn-cream">Coming Soon on the App Store</a>
             </div>
           </div>
-          <div class="m-phone"><div class="phone"><div class="screens"><img class="scr on" src="screens/home.png" alt="Nightingale home screen" /></div></div></div>
+          <div class="m-peek" aria-hidden="true"><div class="phone"><div class="screens"><img class="scr on" src="screens/home.png" alt="" /></div></div></div>
         </div>
+      </section>
+
+      <!-- mobile-only: swipe through the app -->
+      <section class="m-gallery" aria-label="A look inside the app">
+        <div class="mg-head">
+          <span class="eyebrow rv">A look inside</span>
+          <h2 class="rv">Swipe through the app.</h2>
+        </div>
+        <div class="mg-track" id="mg-track">
+          <figure class="mg-item"><div class="mg-phone"><img src="screens/home.png" alt="Today screen" loading="lazy" /></div><figcaption>Today — picks for your minutes</figcaption></figure>
+          <figure class="mg-item"><div class="mg-phone"><img src="screens/explore.png" alt="Explore screen" loading="lazy" /></div><figcaption>Explore — moods &amp; paths</figcaption></figure>
+          <figure class="mg-item"><div class="mg-phone"><img src="screens/reading.png" alt="Reading screen" loading="lazy" /></div><figcaption>The reader — just the words</figcaption></figure>
+          <figure class="mg-item"><div class="mg-phone"><img src="screens/reflect.png" alt="Reflection screen" loading="lazy" /></div><figcaption>Reflect — keep a line for yourself</figcaption></figure>
+        </div>
+        <div class="mg-dots" id="mg-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
       </section>
 
       <!-- 2 · MINUTES -->
@@ -418,7 +454,6 @@
               <div class="pathrow"><h3>The Laughter Hour</h3><small>4 readings · ~12 min</small></div>
             </div>
           </div>
-          <div class="m-phone"><div class="phone"><div class="screens"><img class="scr on" src="screens/explore.png" alt="Explore moods and paths screen" /></div></div></div>
         </div>
       </section>
 
@@ -455,7 +490,6 @@
               </div>
             </div>
           </div>
-          <div class="m-phone"><div class="phone"><div class="screens"><img class="scr on" src="screens/reading.png" alt="Nightingale reading screen — On Saving Time by Seneca" /></div></div></div>
         </div>
       </section>
 
@@ -472,7 +506,6 @@
             </div>
             <p class="past rv">Past reflection · <em>"The color of freedom, of joy, of hope for a colorful future."</em></p>
           </div>
-          <div class="m-phone"><div class="phone"><div class="screens"><img class="scr on" src="screens/reflect.png" alt="Reflection prompt at the end of a reading" /></div></div></div>
         </div>
       </section>
 
@@ -784,7 +817,7 @@
     });
 
   } else {
-    /* ---------- graceful fallback (mobile / reduced motion / no GSAP) ---------- */
+    /* ---------- mobile / reduced motion / no GSAP ---------- */
     document.documentElement.classList.remove('boot');
     bootEl.style.opacity=0;
     function setStage(i){
@@ -798,13 +831,55 @@
       es.forEach(e=>{if(e.isIntersecting)setStage(chapters.indexOf(e.target));});
     },{rootMargin:'-45% 0px -45% 0px'});
     chapters.forEach(ch=>io.observe(ch));
-    if (!desktop && !reduce){
+
+    if (!desktop && hasGsap && !reduce){
+      /* mobile motion: scroll-LINKED via native scroll — no Lenis, no pinning;
+         iOS momentum stays untouched */
+      gsap.registerPlugin(ScrollTrigger);
+
+      /* per-section page hue (mobile finally gets the color story) */
+      chapters.forEach((ch,i)=>ScrollTrigger.create({trigger:ch,start:'top 60%',end:'bottom 60%',
+        onEnter:()=>gsap.to(document.body,{backgroundColor:SC[i].hue,duration:1,ease:'power2.out'}),
+        onEnterBack:()=>gsap.to(document.body,{backgroundColor:SC[i].hue,duration:1,ease:'power2.out'})}));
+      ScrollTrigger.create({trigger:'.cta-sec',start:'top 70%',
+        onEnter:()=>gsap.to(document.body,{backgroundColor:SC[0].hue,duration:1}),
+        onLeaveBack:()=>gsap.to(document.body,{backgroundColor:SC[4].hue,duration:1})});
+
+      /* staggered entrances */
+      document.querySelectorAll('.ch-tx,.mg-head,.cta').forEach(sec=>{
+        const els=sec.querySelectorAll('.rv'); if(!els.length) return;
+        gsap.from(els,{y:28,opacity:0,duration:.8,stagger:.1,ease:'power2.out',
+          scrollTrigger:{trigger:sec,start:'top 78%',once:true}});
+      });
+      gsap.from('#hero h1',{y:30,opacity:0,duration:.9,ease:'power3.out',delay:.1});
+      gsap.from('.mg-item',{y:36,opacity:0,duration:.7,stagger:.08,ease:'power2.out',
+        scrollTrigger:{trigger:'.mg-track',start:'top 82%',once:true}});
+
+      /* hero peek phone drifts up as you scroll past */
+      gsap.fromTo('.m-peek .phone',{y:46},{y:-14,ease:'none',
+        scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom 40%',scrub:.5}});
+    } else if (!desktop && !reduce){
       document.body.classList.add('m-anim');
       const rio=new IntersectionObserver(es=>{
         es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}});
       },{threshold:.12});
       document.querySelectorAll('.rv').forEach(el=>rio.observe(el));
     }
+  }
+
+  /* ---------- mobile gallery dots ---------- */
+  const mgTrack=document.getElementById('mg-track');
+  if (mgTrack){
+    const mgDots=[...document.querySelectorAll('#mg-dots i')];
+    mgTrack.addEventListener('scroll',()=>{
+      const c=mgTrack.scrollLeft+mgTrack.clientWidth/2;
+      let best=0,bd=1e9;
+      [...mgTrack.children].forEach((it,i)=>{
+        const d=Math.abs(it.offsetLeft+it.offsetWidth/2-c);
+        if(d<bd){bd=d;best=i;}
+      });
+      mgDots.forEach((d,i)=>d.classList.toggle('on',i===best));
+    },{passive:true});
   }
 
   /* ---------- minutes quote switcher ---------- */
