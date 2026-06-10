@@ -139,18 +139,20 @@
      is sharp at every scale (upscaling a cached layer is what causes blur) */
   /* height-capped: at spotlight (scale 1.0) the phone must clear the nav and
      bottom edge even on short MacBook viewports */
-  .stage.scenes .phone{width:min(clamp(287px,26.2vw,351px),calc((100vh - 128px)/2.2))}
-  .phone{width:clamp(252px,23vw,308px);border-radius:46px;padding:10px;
-    background:linear-gradient(160deg,#3a2a2b,#1a1012);
-    box-shadow:0 60px 110px -34px rgba(0,0,0,.8),0 0 0 1px rgba(239,228,223,.07),inset 0 0 0 1px rgba(0,0,0,.5);
-    transform:rotate(-2.2deg)}
+  .stage.scenes .phone{width:min(clamp(287px,26.2vw,351px),calc((100vh - 128px)/2.15))}
+  /* real device frame PNG (Assets/iphone_transparent.png, 1400x3000):
+     the .frame img sits on top, screens show through its transparent cutout */
+  .phone{position:relative;width:clamp(252px,23vw,308px);transform:rotate(-2.2deg)}
+  .phone .frame{position:relative;display:block;width:100%;z-index:4;pointer-events:none}
+  .phone::after{content:"";position:absolute;left:5%;right:5%;top:3%;bottom:3%;z-index:0;
+    border-radius:64px;box-shadow:0 60px 110px -34px rgba(0,0,0,.8)}
   .stage:not(.scenes) .phone{transition:transform 1s var(--ease)}
-  .phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);
-    width:94px;height:25px;background:#0d0709;border-radius:0 0 15px 15px;z-index:5}
-  .screens{position:relative;border-radius:37px;overflow:hidden;aspect-ratio:276/590;background:#0d0709;
+  /* screen window measured from the frame's alpha channel */
+  .screens{position:absolute;left:5.214%;right:4.714%;top:4.333%;bottom:4.267%;z-index:1;
+    overflow:hidden;background:#0d0709;border-radius:13% / 6%;
     /* composited (transformed) children escape border-radius clipping in
        Chrome — clip-path + isolation clips GPU layers reliably */
-    clip-path:inset(0 round 37px);isolation:isolate}
+    clip-path:inset(0 round 13% / 6%);isolation:isolate}
   .screens .scr{position:absolute;inset:0;width:100%;height:100%;opacity:0}
   .screens img.scr{object-fit:cover}
   .screens .scr.on{opacity:1}
@@ -181,7 +183,7 @@
     border-radius:999px;padding:7px 13px;white-space:nowrap}
   #boot{position:absolute;inset:0;background:#0d0709;z-index:6;pointer-events:none;transition:opacity .8s var(--ease)}
 
-  .float-card{position:absolute;z-index:4;bottom:9%;right:-8%;width:212px;
+  .float-card{position:absolute;z-index:6;bottom:9%;right:-8%;width:212px;
     background:rgba(36,24,27,.86);backdrop-filter:blur(10px);border:1px solid var(--line-2);
     border-radius:16px;padding:15px 16px;box-shadow:0 24px 50px -18px rgba(0,0,0,.7);
     transform:rotate(1.5deg)}
@@ -324,9 +326,8 @@
       padding:8px clamp(22px,4.5vw,56px) 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
     .mg-track::-webkit-scrollbar{display:none}
     .mg-item{flex:0 0 64vw;max-width:280px;scroll-snap-align:center;margin:0}
-    .mg-phone{border-radius:38px;padding:8px;background:linear-gradient(160deg,#3a2a2b,#1a1012);
-      box-shadow:0 30px 60px -24px rgba(0,0,0,.75),0 0 0 1px rgba(239,228,223,.06)}
-    .mg-phone img{display:block;width:100%;border-radius:31px;aspect-ratio:1290/2796;object-fit:cover}
+    .mg-item .phone{width:100%;transform:none}
+    .mg-item .phone::after{box-shadow:0 30px 60px -24px rgba(0,0,0,.75)}
     .mg-item figcaption{text-align:center;margin-top:12px;font-size:.88rem;color:var(--muted)}
     .mg-dots{display:flex;justify-content:center;gap:8px;margin-top:8px}
     .mg-dots i{width:6px;height:6px;border-radius:50%;background:rgba(239,228,223,.2);
@@ -405,7 +406,7 @@
               <a href="#download" class="btn btn-cream">Coming Soon on the App Store</a>
             </div>
           </div>
-          <div class="m-peek" aria-hidden="true"><div class="phone"><div class="screens"><img class="scr on" src="screens/home.png" alt="" /></div></div></div>
+          <div class="m-peek" aria-hidden="true"><div class="phone"><div class="screens"><img class="scr on" src="screens/home.png" alt="" /></div><img class="frame" src="Assets/iphone_transparent.png" alt="" /></div></div>
         </div>
       </section>
 
@@ -530,10 +531,10 @@
           <h2 class="rv">Swipe through the app.</h2>
         </div>
         <div class="mg-track" id="mg-track">
-          <figure class="mg-item"><div class="mg-phone"><img src="screens/home.png" alt="Today screen" loading="lazy" /></div><figcaption>Today — picks for your minutes</figcaption></figure>
-          <figure class="mg-item"><div class="mg-phone"><img src="screens/explore.png" alt="Explore screen" loading="lazy" /></div><figcaption>Explore — moods &amp; paths</figcaption></figure>
-          <figure class="mg-item"><div class="mg-phone"><img src="screens/reading.png" alt="Reading screen" loading="lazy" /></div><figcaption>The reader — just the words</figcaption></figure>
-          <figure class="mg-item"><div class="mg-phone"><img src="screens/reflect.png" alt="Reflection screen" loading="lazy" /></div><figcaption>Reflect — keep a line for yourself</figcaption></figure>
+          <figure class="mg-item"><div class="phone"><div class="screens"><img class="scr on" src="screens/home.png" alt="Today screen" loading="lazy" /></div><img class="frame" src="Assets/iphone_transparent.png" alt="" loading="lazy" /></div><figcaption>Today — picks for your minutes</figcaption></figure>
+          <figure class="mg-item"><div class="phone"><div class="screens"><img class="scr on" src="screens/explore.png" alt="Explore screen" loading="lazy" /></div><img class="frame" src="Assets/iphone_transparent.png" alt="" loading="lazy" /></div><figcaption>Explore — moods &amp; paths</figcaption></figure>
+          <figure class="mg-item"><div class="phone"><div class="screens"><img class="scr on" src="screens/reading.png" alt="Reading screen" loading="lazy" /></div><img class="frame" src="Assets/iphone_transparent.png" alt="" loading="lazy" /></div><figcaption>The reader — just the words</figcaption></figure>
+          <figure class="mg-item"><div class="phone"><div class="screens"><img class="scr on" src="screens/reflect.png" alt="Reflection screen" loading="lazy" /></div><img class="frame" src="Assets/iphone_transparent.png" alt="" loading="lazy" /></div><figcaption>Reflect — keep a line for yourself</figcaption></figure>
         </div>
         <div class="mg-dots" id="mg-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
       </section>
@@ -578,6 +579,7 @@
               <img class="scr" src="screens/reflect.png" alt="" />
               <i id="boot"></i>
             </div>
+            <img class="frame" src="Assets/iphone_transparent.png" alt="" />
           </div>
           <div class="float-card" id="float-card">
             <div class="fc-label">✦ Reflection</div>
