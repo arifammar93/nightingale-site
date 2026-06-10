@@ -302,8 +302,9 @@
        chapter captions scroll through a scrimmed zone beneath it ---- */
     .story{display:block;position:relative}
     .chapters{position:relative;z-index:2}
-    .chapter{height:160vh}
-    .chapter#hero{height:140vh}
+    /* pin hold = chapter height − 100vh: keep it a BEAT (≈30vh), not a hang */
+    .chapter{height:132vh}
+    .chapter#hero{height:124vh}
     .ch-pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;
       justify-content:flex-end;padding:0 0 3.5vh}
     .ch-tx{position:relative;max-width:none}
@@ -311,26 +312,33 @@
       left:calc(-1*clamp(22px,4.5vw,56px));right:calc(-1*clamp(22px,4.5vw,56px));
       top:-70px;bottom:-3.5vh;
       background:linear-gradient(180deg,transparent,rgba(12,8,10,.82) 32%)}
-    .chapter h1{font-size:2.4rem}
-    .chapter h2{font-size:1.7rem;margin-top:10px}
-    .chapter p.lead{font-size:1.04rem;margin-top:12px;max-width:none}
-    .hero-cta{margin-top:20px}
-    .hero-cta .btn{width:100%;justify-content:center}
-    .chips{flex-wrap:nowrap;margin-top:18px}
-    .chip{min-width:0;flex:1;padding:11px 8px}
-    .mini-quote{margin-top:18px;padding-top:16px}
-    .mini-quote blockquote{font-size:1.1rem}
+    .chapter h1{font-size:2.05rem}
+    .chapter h2{font-size:1.45rem;margin-top:8px}
+    .chapter p.lead{font-size:.94rem;margin-top:10px;max-width:none;line-height:1.5}
+    .eyebrow{font-size:.64rem}
+    .hero-cta{margin-top:16px}
+    .hero-cta .btn{width:100%;justify-content:center;padding:12px 22px;font-size:.9rem}
+    .chips{flex-wrap:nowrap;margin-top:14px}
+    .chip{min-width:0;flex:1;padding:9px 8px}
+    .chip .n{font-size:1.25rem}
+    .mini-quote{margin-top:14px;padding-top:13px}
+    .mini-quote blockquote{font-size:.98rem}
+    .mini-quote cite{font-size:.84rem;margin-top:8px}
     .marquee{margin-inline:calc(-1*clamp(22px,4.5vw,56px));margin-top:18px}
-    .atmos{margin-top:18px;padding:16px}
-    .atmos-btn{padding:11px 6px}
-    .reflect-box{margin-top:16px;padding:16px}
-    .reflect-box p{font-size:1rem}
+    .atmos{margin-top:14px;padding:13px}
+    .atmos-btn{padding:9px 6px}
+    .atmos-btn .at{font-size:.8rem}
+    .atmos-btn .ai{width:19px;height:19px}
+    .reflect-box{margin-top:13px;padding:13px}
+    .reflect-box p{font-size:.92rem}
+    .past{font-size:.8rem;margin-top:11px}
+    .mani{font-size:1.55rem}
     html.boot #hero .ch-tx>*{opacity:1} /* no word-mask intro on mobile */
 
     /* the desktop stage becomes a full-story overlay; phone rides the top */
     .stage-col{display:block;position:absolute;inset:0;z-index:1;pointer-events:none}
     .stage{height:100vh;align-items:flex-start;justify-content:center;padding-top:88px}
-    .stage .phone{width:min(56vw,calc((64vh - 92px)*0.4667));transform:rotate(0deg)}
+    .stage .phone{width:min(60vw,calc((67vh - 92px)*0.4667));transform:rotate(0deg)}
     .stage-glow .g{width:96vw}
     .stage-bird{display:none}
     .float-card{display:none}
@@ -340,13 +348,12 @@
     .chapter:not(#hero){counter-increment:chap}
     .chapter:not(#hero) .eyebrow::before{content:"0" counter(chap) " — ";color:var(--muted-2)}
 
-    .manifesto{height:170vh}
+    .manifesto{height:155vh}
   }
   @media(max-width:560px){
     header{top:12px}
     header nav{height:58px;padding:0 8px 0 16px}
     .brand img{width:52px;height:52px}
-    .chapter h1{font-size:2.6rem}
   }
   @media(prefers-reduced-motion:reduce){
     .mq-track{animation:none}
