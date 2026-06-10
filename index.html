@@ -9,6 +9,13 @@
 <meta property="og:title" content="Nightingale — Meaningful reading for the time you have" />
 <meta property="og:description" content="A quiet place to read and reflect. Curated short readings in 1, 2, 5 and 10 minute moments." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://nightingale.tambourineai.com/" />
+<meta property="og:image" content="https://nightingale.tambourineai.com/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://nightingale.tambourineai.com/og-image.jpg" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
@@ -140,7 +147,7 @@
   /* height-capped: at spotlight (scale 1.0) the phone must clear the nav and
      bottom edge even on short MacBook viewports */
   .stage.scenes .phone{width:min(clamp(287px,26.2vw,351px),calc((100vh - 128px)/2.15))}
-  /* real device frame PNG (Assets/iphone_transparent.png, 1400x3000):
+  /* real device frame PNG (Assets/iphone_transparent.webp, 1400x3000):
      the .frame img sits on top, screens show through its transparent cutout */
   .phone{position:relative;width:clamp(252px,23vw,308px);transform:rotate(-2.2deg)}
   .phone .frame{position:relative;display:block;width:100%;z-index:4;pointer-events:none}
@@ -152,35 +159,38 @@
     overflow:hidden;background:#0d0709;border-radius:13% / 6%;
     /* composited (transformed) children escape border-radius clipping in
        Chrome — clip-path + isolation clips GPU layers reliably */
-    clip-path:inset(0 round 13% / 6%);isolation:isolate}
+    clip-path:inset(0 round 13% / 6%);isolation:isolate;
+    container-type:size} /* lets the live reader scale in cqw like a screenshot */
   .screens .scr{position:absolute;inset:0;width:100%;height:100%;opacity:0}
   .screens img.scr{object-fit:cover}
   .screens .scr.on{opacity:1}
   .screens:not(.scenes) .scr{transition:opacity .7s var(--ease)}
 
-  /* ---- simulated reader screen (real HTML so it truly scrolls) ---- */
+  /* ---- simulated reader screen (real HTML so it truly scrolls) ----
+     all sizes in cqw = % of the screen's own width, matched to true iOS
+     proportions, so it scales like a screenshot at any phone size */
   .scr-reader{background:#1A0E12;display:flex;flex-direction:column;padding:0}
-  .rs-top{padding:44px 22px 10px;text-align:center;flex:none}
-  .rs-pill{display:inline-block;font-size:.56rem;letter-spacing:.14em;font-weight:600;color:var(--cream-2);
-    background:#2B191E;border-radius:999px;padding:5px 12px;text-transform:uppercase;font-family:'Newsreader',serif}
-  .rs-top h3{font-family:'Fraunces',serif;font-size:1.22rem;color:var(--cream);margin-top:10px;letter-spacing:-.01em}
-  .rs-top .rs-author{font-size:.74rem;color:var(--terra);margin-top:4px;font-family:'Newsreader',serif}
+  .rs-top{padding:15cqw 6cqw 2.6cqw;text-align:center;flex:none}
+  .rs-pill{display:inline-block;font-size:2.5cqw;letter-spacing:.14em;font-weight:600;color:var(--cream-2);
+    background:#2B191E;border-radius:999px;padding:1.3cqw 3.1cqw;text-transform:uppercase;font-family:'Newsreader',serif}
+  .rs-top h3{font-family:'Fraunces',serif;font-size:5.1cqw;color:var(--cream);margin-top:2.6cqw;letter-spacing:-.01em}
+  .rs-top .rs-author{font-size:3.1cqw;color:var(--terra);margin-top:1cqw;font-family:'Newsreader',serif}
   .rs-clip{flex:1;overflow:hidden;position:relative;
-    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18px,#000 calc(100% - 10px),transparent);
-    mask-image:linear-gradient(180deg,transparent 0,#000 18px,#000 calc(100% - 10px),transparent)}
-  .rs-body{padding:14px 22px 74px} /* bottom pad clears the floating bar */
-  .rs-body p{font-family:'Newsreader',serif;font-size:.84rem;line-height:1.75;color:var(--cream-2);margin-bottom:13px}
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 4.6cqw,#000 calc(100% - 2.6cqw),transparent);
+    mask-image:linear-gradient(180deg,transparent 0,#000 4.6cqw,#000 calc(100% - 2.6cqw),transparent)}
+  .rs-body{padding:3.6cqw 5.6cqw 19cqw} /* bottom pad clears the floating bar */
+  .rs-body p{font-family:'Newsreader',serif;font-size:4cqw;line-height:1.72;color:var(--cream-2);margin-bottom:3.3cqw}
   /* floating glassy control bar — article scrolls beneath it, like the app */
-  .rs-foot{position:absolute;left:12px;right:12px;bottom:14px;z-index:3;
-    display:flex;align-items:center;gap:10px;padding:9px 10px 9px 16px;
+  .rs-foot{position:absolute;left:3.1cqw;right:3.1cqw;bottom:3.1cqw;z-index:3;
+    display:flex;align-items:center;gap:2.6cqw;padding:1.9cqw 2.3cqw 1.9cqw 4.1cqw;
     background:rgba(30,22,34,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border:1px solid rgba(239,228,223,.12);border-radius:999px;
-    box-shadow:0 10px 28px -10px rgba(0,0,0,.55)}
-  .rs-track{flex:1;height:3px;border-radius:2px;background:rgba(239,228,223,.16);overflow:hidden}
-  .rs-prog{height:100%;width:100%;border-radius:2px;background:var(--cream-2);transform:scaleX(0);transform-origin:0 50%}
-  .rs-mark{flex:none;width:15px;height:15px;color:var(--cream-2)}
-  .rs-finish{font-family:'Newsreader',serif;font-size:.72rem;font-weight:500;color:#1a1012;background:var(--cream);
-    border-radius:999px;padding:7px 13px;white-space:nowrap}
+    box-shadow:0 2.6cqw 7.2cqw -2.6cqw rgba(0,0,0,.55)}
+  .rs-track{flex:1;height:.8cqw;border-radius:.5cqw;background:rgba(239,228,223,.16);overflow:hidden}
+  .rs-prog{height:100%;width:100%;border-radius:.5cqw;background:var(--cream-2);transform:scaleX(0);transform-origin:0 50%}
+  .rs-mark{flex:none;width:3.8cqw;height:3.8cqw;color:var(--cream-2)}
+  .rs-finish{font-family:'Newsreader',serif;font-size:2.9cqw;font-weight:500;color:#1a1012;background:var(--cream);
+    border-radius:999px;padding:1.7cqw 3.3cqw;white-space:nowrap}
   #boot{position:absolute;inset:0;background:#0d0709;z-index:6;pointer-events:none;transition:opacity .8s var(--ease)}
 
   .float-card{position:absolute;z-index:6;bottom:9%;right:-8%;width:212px;
@@ -311,7 +321,8 @@
     .ch-tx::before{content:"";position:absolute;z-index:-1;
       left:calc(-1*clamp(22px,4.5vw,56px));right:calc(-1*clamp(22px,4.5vw,56px));
       top:-70px;bottom:-3.5vh;
-      background:linear-gradient(180deg,transparent,rgba(12,8,10,.82) 32%)}
+      /* scrim follows the chapter hue (set by JS as --scrim-c) */
+      background:linear-gradient(180deg,transparent,var(--scrim-c,#150D10d6) 32%)}
     .chapter h1{font-size:2.05rem}
     .chapter h2{font-size:1.45rem;margin-top:8px}
     .chapter p.lead{font-size:.94rem;margin-top:10px;max-width:none;line-height:1.5}
@@ -319,7 +330,7 @@
     .hero-cta{margin-top:16px}
     .hero-cta .btn{width:100%;justify-content:center;padding:12px 22px;font-size:.9rem}
     .chips{flex-wrap:nowrap;margin-top:14px}
-    .chip{min-width:0;flex:1;padding:9px 8px}
+    .chip{min-width:0;flex:1;padding:9px 8px;min-height:44px} /* Apple touch target */
     .chip .n{font-size:1.25rem}
     .mini-quote{margin-top:14px;padding-top:13px}
     .mini-quote blockquote{font-size:.98rem}
@@ -339,7 +350,9 @@
     .stage-col{display:block;position:absolute;inset:0;z-index:1;pointer-events:none}
     .stage{height:100vh;align-items:flex-start;justify-content:center;padding-top:88px}
     .stage .phone{width:min(60vw,calc((67vh - 92px)*0.4667));transform:rotate(0deg)}
-    .stage-glow .g{width:96vw}
+    .stage-glow .g{width:96vw;transform:translateY(-12vh)} /* halo the phone, not mid-page */
+    /* screens slide like app navigation (JS drives transforms on mobile) */
+    .stage .screens .scr{opacity:1;transition:transform .65s var(--ease)}
     .stage-bird{display:none}
     .float-card{display:none}
 
@@ -537,8 +550,8 @@
         <div class="phone-wrap">
           <div class="phone" id="phone">
             <div class="screens" id="screens">
-              <img class="scr on" src="screens/home.png" alt="" />
-              <img class="scr" src="screens/explore.png" alt="" />
+              <img class="scr on" src="screens/home.webp" alt="" />
+              <img class="scr" src="screens/explore.webp" alt="" />
               <div class="scr scr-reader">
                 <div class="rs-top">
                   <span class="rs-pill">◷ &nbsp;5 min read</span>
@@ -561,10 +574,10 @@
                   <span class="rs-finish">✓ Finished</span>
                 </div>
               </div>
-              <img class="scr" src="screens/reflect.png" alt="" />
+              <img class="scr" src="screens/reflect.webp" alt="" />
               <i id="boot"></i>
             </div>
-            <img class="frame" src="Assets/iphone_transparent.png" alt="" />
+            <img class="frame" src="Assets/iphone_transparent.webp" alt="" />
           </div>
           <div class="float-card" id="float-card">
             <div class="fc-label">✦ Reflection</div>
@@ -872,9 +885,12 @@
   } else {
     /* ---------- mobile / reduced motion / no GSAP ---------- */
     document.documentElement.classList.remove('boot');
-    bootEl.style.opacity=0;
+    const mSlide=!desktop; /* mobile: screens slide like app navigation */
+    if (mSlide) screens.forEach((s,k)=>{s.classList.add('on');s.style.opacity=1;
+      s.style.transform='translateX('+(k===0?0:106)+'%)';});
     function setStage(i){
-      screens.forEach((img,k)=>img.classList.toggle('on', k===SC[i].screen));
+      if (mSlide) screens.forEach((s,k)=>s.style.transform='translateX('+(k<=SC[i].screen?0:106)+'%)');
+      else screens.forEach((img,k)=>img.classList.toggle('on', k===SC[i].screen));
       glows.forEach((el,k)=>el.classList.toggle('on', k===i));
       dots.forEach((d,k)=>d.classList.toggle('on', k===i));
       phone.style.transform='rotate('+SC[i].rot+'deg)';
@@ -890,9 +906,17 @@
          iOS momentum stays untouched */
       gsap.registerPlugin(ScrollTrigger);
 
+      /* boot: the phone's screen lights up on arrival */
+      gsap.fromTo(bootEl,{opacity:1},{opacity:0,duration:.9,delay:.45,ease:'power2.inOut'});
+
+      /* scroll progress hairline */
+      gsap.to('#progress',{scaleX:1,ease:'none',
+        scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.3}});
+
       /* per-section page hue (mobile finally gets the color story) */
       const setM=i=>{
         gsap.to(document.body,{backgroundColor:SC[i].hue,duration:1,ease:'power2.out'});
+        document.body.style.setProperty('--scrim-c',SC[i].hue+'D6'); /* scrim follows hue */
         dots.forEach((d,k)=>d.classList.toggle('on',k===i));
       };
       chapters.forEach((ch,i)=>ScrollTrigger.create({trigger:ch,start:'top 60%',end:'bottom 60%',
@@ -914,7 +938,6 @@
       /* arrival: headline + phone rise together */
       gsap.from('#hero h1',{y:30,opacity:0,duration:.9,ease:'power3.out',delay:.1});
       gsap.from('.phone-wrap',{y:54,opacity:0,duration:1.1,ease:'power3.out',delay:.15});
-      gsap.set(bootEl,{opacity:0});
 
       /* the article truly scrolls inside the phone through the reader chapter */
       const rsBody=document.getElementById('rs-body'),rsClip=document.querySelector('.rs-clip');
@@ -929,6 +952,8 @@
       },{threshold:.12});
       document.querySelectorAll('.rv').forEach(el=>rio.observe(el));
     }
+    /* boot is animated in the mobile-gsap path; hide it instantly everywhere else */
+    if (desktop || reduce || !hasGsap) bootEl.style.opacity=0;
     /* no-GSAP / reduced motion: reveal manifesto words when in view */
     if (maniWords.length && (reduce || !hasGsap)){
       const mio=new IntersectionObserver(es=>{
