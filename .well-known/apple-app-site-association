@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "RQ4PNV5J3Y.com.tambourineai.nightingale",
+        "paths": ["/read/*"]
+      }
+    ]
+  }
+}

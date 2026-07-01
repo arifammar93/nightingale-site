@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>This reading lives in Nightingale</title>
+<meta name="description" content="Open this reading in the Nightingale app — a quiet place to read, by mood and by the minute." />
+<meta name="robots" content="noindex" />
+
+<meta property="og:title" content="This reading lives in Nightingale" />
+<meta property="og:description" content="A quiet place to read and reflect. Curated short readings in 1, 2, 5 and 10 minute moments." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://nightingale.tambourineai.com/" />
+<meta property="og:image" content="https://nightingale.tambourineai.com/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://nightingale.tambourineai.com/og-image.jpg" />
+
+<link rel="icon" href="/Assets/Nightingale_Home_Logo-cream.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --bg:#150D10; --surface:#231719;
+    --line:rgba(239,228,223,.10);
+    --cream:#EFE4DF; --cream-2:#D8CAC3; --muted:#A2918B; --muted-2:#7E6F6A;
+    --terra:#C58A66; --gold:#D9A066;
+    --radius:18px; --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--cream);
+    font-family:'Newsreader',Georgia,'Times New Roman',serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+    min-height:100vh; display:flex; flex-direction:column;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a{color:inherit;text-decoration:none}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.015em;line-height:1.08}
+
+  header{position:relative;z-index:2;padding:26px clamp(22px,5vw,48px)}
+  header .brand{display:inline-flex;align-items:center;gap:10px}
+  header .brand img{height:26px;width:auto;display:block}
+
+  main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:clamp(28px,6vw,64px) clamp(22px,5vw,48px) 80px;}
+  .card{max-width:560px}
+
+  .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:600}
+  h1{font-size:clamp(2rem,6vw,3rem);margin:.9rem 0 1rem}
+  .lede{font-size:1.15rem;color:var(--cream-2);margin:0 auto 2.4rem;max-width:44ch}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    padding:.9rem 1.7rem;border-radius:999px;
+    background:var(--cream);color:var(--bg);
+    font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.02rem;
+    transition:transform .3s var(--ease),background .3s var(--ease);
+  }
+  .btn:hover{transform:translateY(-2px);background:#fff}
+  .sub{display:block;margin-top:1.3rem;color:var(--muted);font-size:.95rem}
+  .sub a{color:var(--gold);border-bottom:1px solid rgba(217,160,102,.35)}
+
+  footer{position:relative;z-index:2;padding:32px clamp(22px,5vw,48px);
+    color:var(--muted-2);font-size:.85rem;border-top:1px solid var(--line);text-align:center}
+</style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">
+      <img src="/Assets/Wordmark-cream.svg" alt="Nightingale" />
+    </a>
+  </header>
+
+  <main>
+    <div class="card">
+      <p class="eyebrow">Nightingale</p>
+      <h1>This reading lives in the app</h1>
+      <p class="lede">Open it in Nightingale — a quiet place to read, by mood and by the minute. Reflections, reading paths, and short readings for the time you have.</p>
+      <a class="btn" href="/">Discover Nightingale →</a>
+      <span class="sub">Or head back to the <a href="/">homepage</a>.</span>
+    </div>
+  </main>
+
+  <footer>
+    © Nightingale · <a href="/">nightingale.tambourineai.com</a>
+  </footer>
+</body>
+</html>
