@@ -1,0 +1,8 @@
+{
+  "name": "nightingale-site",
+  "private": true,
+  "description": "Nightingale marketing site + Cloudflare Pages Functions for dynamic /read/{id} link previews.",
+  "dependencies": {
+    "workers-og": "0.0.27"
+  }
+}
