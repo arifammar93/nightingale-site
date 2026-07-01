@@ -1,0 +1,4 @@
+# Serve the Apple App Site Association with the correct JSON content-type.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+  Cache-Control: public, max-age=3600

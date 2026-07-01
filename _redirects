@@ -1,0 +1,3 @@
+# Cloudflare Pages: serve the branded reading page (HTTP 200) for every /read/{id}.
+# 200 status = link-preview crawlers (iMessage/WhatsApp/etc.) build the OG card.
+/read/*   /read.html   200
