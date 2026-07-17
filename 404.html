@@ -70,6 +70,12 @@
     transition:transform .3s var(--ease),background .3s var(--ease);
   }
   .btn:hover{transform:translateY(-2px);background:#fff}
+  /* Official Apple badge — used as-supplied; padding preserves required clear space. */
+  .badge-link{display:inline-block;line-height:0;padding:6px;
+    transition:transform .3s var(--ease),opacity .3s var(--ease)}
+  .badge-link:hover{transform:translateY(-2px);opacity:.9}
+  .badge-link img{height:54px;width:auto;display:block}
+  @media(max-width:640px){.badge-link img{height:46px}}
   .sub{display:block;margin-top:1.3rem;color:var(--muted);font-size:.95rem}
   .sub a{color:var(--gold);border-bottom:1px solid rgba(217,160,102,.35)}
 
@@ -89,7 +95,9 @@
       <p class="eyebrow">Nightingale</p>
       <h1>This reading lives in the app</h1>
       <p class="lede">Open it in Nightingale — a quiet place to read, by mood and by the minute. Reflections, reading paths, and short readings for the time you have.</p>
-      <a class="btn" href="/">Discover Nightingale →</a>
+      <a class="badge-link" href="https://apps.apple.com/us/app/id6778192267" target="_blank" rel="noopener" aria-label="Download Nightingale on the App Store">
+        <img src="/Assets/Download_on_App_Store/White_lockup/SVG/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" alt="Download on the App Store" width="120" height="40" />
+      </a>
       <span class="sub">Or head back to the <a href="/">homepage</a>.</span>
     </div>
   </main>

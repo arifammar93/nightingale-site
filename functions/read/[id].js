@@ -100,6 +100,11 @@ function page({ reading, id, cardUrl }) {
     background:var(--cream);color:var(--bg);font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1rem;
     transition:transform .3s var(--ease),background .3s var(--ease)}
   .btn:hover{transform:translateY(-2px);background:#fff}
+  .badge-link{display:inline-block;line-height:0;padding:6px;
+    transition:transform .3s var(--ease),opacity .3s var(--ease)}
+  .badge-link:hover{transform:translateY(-2px);opacity:.9}
+  .badge-link img{height:54px;width:auto;display:block}
+  @media(max-width:640px){.badge-link img{height:46px}}
   footer{position:relative;z-index:2;padding:32px clamp(22px,5vw,48px);
     color:var(--muted-2);font-size:.85rem;border-top:1px solid var(--line);text-align:center}
 </style>
@@ -115,7 +120,9 @@ function page({ reading, id, cardUrl }) {
     <div class="body"><p>${esc(teaser(reading.body, 420))}</p></div>
     <div class="cta">
       <p>Read this and more in the Nightingale app — a quiet place to read, by mood and by the minute.</p>
-      <a class="btn" href="/">Discover Nightingale →</a>
+      <a class="badge-link" href="https://apps.apple.com/us/app/id6778192267" target="_blank" rel="noopener" aria-label="Download Nightingale on the App Store">
+        <img src="/Assets/Download_on_App_Store/White_lockup/SVG/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" alt="Download on the App Store" width="120" height="40" />
+      </a>
     </div>
   </main>
   <footer>© Nightingale · <a href="/">nightingale.tambourineai.com</a></footer>
