@@ -208,6 +208,13 @@
   .btn-cream:hover{box-shadow:0 20px 44px -12px rgba(239,228,223,.5)}
   .btn-ghost{background:rgba(239,228,223,.04);border-color:var(--line-2);color:var(--cream)}
   .btn-ghost:hover{background:rgba(239,228,223,.09)}
+  /* Official Apple "Download on the App Store" badge.
+     Artwork is used as-supplied — never recolour, redraw or distort it.
+     The padding preserves Apple's required clear space (>=10% of badge height). */
+  .badge-link{display:inline-block;line-height:0;padding:6px;cursor:pointer;
+    transition:opacity .25s;will-change:transform}
+  .badge-link:hover{opacity:.9}
+  .badge-link img{height:54px;width:auto;display:block}
   .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
 
   /* hero word mask reveal */
@@ -329,6 +336,7 @@
     .eyebrow{font-size:.64rem}
     .hero-cta{margin-top:16px}
     .hero-cta .btn{width:100%;justify-content:center;padding:12px 22px;font-size:.9rem}
+    .badge-link img{height:46px}
     .chips{flex-wrap:nowrap;margin-top:14px}
     .chip{min-width:0;flex:1;padding:9px 8px;min-height:44px} /* Apple touch target */
     .chip .n{font-size:1.25rem}
@@ -394,7 +402,7 @@
         <button data-ch="3" aria-label="The reader"></button>
         <button data-ch="4" aria-label="Reflections"></button>
       </div>
-      <a class="pill" href="#download">Coming soon</a>
+      <a class="pill" href="https://apps.apple.com/us/app/id6778192267" target="_blank" rel="noopener">Get the app</a>
     </nav>
   </div>
 </header>
@@ -419,7 +427,9 @@
             </h1>
             <p class="lead rv">Curated short readings in moments of 1, 2, 5 or 10 minutes — timeless ideas, gathered by mood, with space to pause and reflect.</p>
             <div class="hero-cta rv">
-              <a href="#download" class="btn btn-cream">Coming Soon on the App Store</a>
+              <a class="badge-link" href="https://apps.apple.com/us/app/id6778192267" target="_blank" rel="noopener" aria-label="Download Nightingale on the App Store">
+                <img src="Assets/app-store-badge.svg" alt="Download on the App Store" width="180" height="60" />
+              </a>
             </div>
           </div>
         </div>
@@ -440,8 +450,8 @@
               <div class="chip" data-i="3" role="button" tabindex="0"><span class="n">10</span><span class="u">min</span></div>
             </div>
             <div class="mini-quote rv">
-              <blockquote id="q-text">Somewhere, something incredible is waiting to be known.</blockquote>
-              <cite id="q-author">— Carl Sagan</cite>
+              <blockquote id="q-text">While we are postponing, life speeds by.</blockquote>
+              <cite id="q-author">— Seneca</cite>
               <div class="qmeta" id="q-meta">5 min read</div>
             </div>
           </div>
@@ -604,7 +614,9 @@
     <h2>A quiet place to read.</h2>
     <p>Begin with a minute. Stay for the stillness.</p>
     <div class="hero-cta">
-      <a href="#" class="btn btn-cream">Coming Soon on the App Store</a>
+      <a class="badge-link" href="https://apps.apple.com/us/app/id6778192267" target="_blank" rel="noopener" aria-label="Download Nightingale on the App Store">
+        <img src="Assets/app-store-badge.svg" alt="Download on the App Store" width="180" height="60" />
+      </a>
     </div>
   </div>
 </section>
@@ -874,7 +886,7 @@
     })();
 
     /* ---------- magnetic buttons ---------- */
-    document.querySelectorAll('.btn,.pill').forEach(b=>{
+    document.querySelectorAll('.btn,.pill,.badge-link').forEach(b=>{
       b.addEventListener('mousemove',e=>{
         const r=b.getBoundingClientRect();
         gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.18,y:(e.clientY-r.top-r.height/2)*.32,duration:.4,ease:'power2.out'});
@@ -967,7 +979,7 @@
   const picks=[
     {text:"Who can clear muddy water? Be still, and it clears by itself.",author:"— Laozi",meta:"1 min read"},
     {text:"Tell me, what is it you plan to do with your one wild and precious life?",author:"— Mary Oliver",meta:"2 min read"},
-    {text:"Somewhere, something incredible is waiting to be known.",author:"— Carl Sagan",meta:"5 min read"},
+    {text:"While we are postponing, life speeds by.",author:"— Seneca",meta:"5 min read"},
     {text:"The world breaks everyone, and afterward many are strong at the broken places.",author:"— Ernest Hemingway",meta:"10 min read"}
   ];
   const qText=document.getElementById('q-text'),qAuthor=document.getElementById('q-author'),qMeta=document.getElementById('q-meta');
