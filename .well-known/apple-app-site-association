@@ -5,6 +5,7 @@
         "appIDs": ["RQ4PNV5J3Y.com.tambourineai.nightingale"],
         "components": [
           { "/": "/" },
+          { "/": "/list" },
           { "/": "/read/*" }
         ]
       }
